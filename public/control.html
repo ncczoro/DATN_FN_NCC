@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Điều khiển</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="home.css">
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+	  <nav class="navbar navbar-default" role="navigation">
+	  	<div class="container-fluid">
+	  		<!-- Brand and toggle get grouped for better mobile display -->
+	  		<div class="navbar-header">
+	  			<a class="navbar-brand" href="#"><img src="images/icon.png" alt="home" id="home-icon"></a>
+	  		</div>
+	  
+	  		<!-- Collect the nav links, forms, and other content for toggling -->
+	  		<div class="collapse navbar-collapse navbar-ex1-collapse">
+	  			<ul class="nav navbar-nav">
+	  				<li><a href="home.html">Trang chủ</a></li>
+	  				<li><a href="control.html">Điều khiển</a></li>
+	  				<li><a href="setting.html">Thiết lập</a></li>
+	  				<!-- <li><a href="history.html">Lịch sử</a></li> -->
+	  			</ul>
+				<ul class="nav navbar-nav navbar-right">
+				<li><a href="index.html">Đăng xuất</a></li>
+				<!-- <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="home.html">Trang chủ</a></li>
+						<li><a href="control.html">Điều khiển</a></li>
+						<li><a href="setting.html">Thiết lập</a></li>
+						<li><a href="history.html">Lịch sử</a></li>
+					</ul>
+				</li> -->
+			</ul>
+	  		</div><!-- /.navbar-collapse -->
+	  	</div>
+	  </nav>
+
+	<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 space1">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title">Điều khiển bật / tắt các thiết bị</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Tên thiết bị</th>
+							<th>Trạng thái</th>
+							<th>Hành động</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Gia nhiệt</td>
+							<td id="dv1"></td>
+							<td>
+								<button type="button" class="btn btn-default control" id="btn1" onclick="onOffBtn( 'btn1' )"></button>
+							</td>
+						</tr>
+						<tr>
+							<td>Quạt hút</td>
+							<td id="dv2"></td>
+							<td>
+								<button type="button" class="btn btn-default control" id="btn2" onclick="onOffBtn( 'btn2' )"></button>
+							</td>
+						</tr>
+						<tr>
+							<td>Phun sương</td>
+							<td id="dv3"></td>
+							<td>
+								<button type="button" class="btn btn-default control" id="btn3" onclick="onOffBtn( 'btn3' )"></button>
+							</td>
+						</tr>
+						<tr>
+							<td>Quạt thổi</td>
+							<td id="dv4"></td>
+							<td>
+								<button type="button" class="btn btn-default control" id="btn4" onclick="onOffBtn( 'btn4' )"></button>
+							</td>
+						</tr>
+						<tr>
+							<td>Giàn lưới</td>
+							<td id="dv5">Đang Tắt </td>
+							<td>
+								<button type="button" class="btn btn-default btn-success control" id="btn5" onclick="onOffBtn( 'btn5' )">Bật</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- style="color: #fff; background: #449d44; border-color: #255625;"  Đang tắt  Bật-->
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+	<script src="script.js"></script>
+	<script>
+		// Click button to On / Off devices in list
+	    function onOffBtn( btnID ) {
+			var id = btnID.substr( 3, (btnID.length) );
+	        var device = firebase.database().ref('Node_1/Control/Device' + id);
+	        var x;
+	        device.on('value', snap => {
+	            x = snap.val();
+	        })
+	        if ( x == 1 ) {
+	            device.set( '0' )
+	        } else {
+	            device.set( '1' );
+	        }
+	    }
+	</script>
+</body>
+</html>

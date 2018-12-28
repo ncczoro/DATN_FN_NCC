@@ -1,0 +1,104 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.login {
+    width: 400px;
+    margin: 40px auto;
+    text-align: center;
+    box-shadow: 2px 2px 2px #888888;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #efefef;
+    text-align: center;
+}
+
+.bordered {
+    width: 90%;
+    height: 90%;
+    border: 3px solid  #000066;
+    display: block;
+    float: none;
+    margin: 1em auto;
+    vertical-align: middle;
+}
+
+.bordered2 {
+    width: 98%;
+    height: 80%;
+    padding: 10px;
+    border: 3px dashed  #000066;
+    display: block;
+    float: none;
+    margin: 5px auto;
+    vertical-align: middle;
+}
+
+.head {
+    color: red;
+    font-size: 20px;
+}
+
+.year {
+    color: blue;
+    font-size: 20px;
+    margin-top: 3em;
+}
+
+.title {
+    text-decoration: underline;
+    color: red;
+    font-size: 22px;
+}
+
+.report {
+    margin: 2em auto;
+    font-size: 30px;
+    color: #000066;
+}
+
+.main-title {
+    font-size: 30px;
+    margin-bottom: 3em;
+}
+
+.main-title p {
+    margin: 5px 0;
+    padding: 0;
+}
+
+.head, .year, .second {
+    text-align: center;
+    font-weight: bold;
+    font-family: serif;
+}
+
+.login-button {
+    background-color: yellowgreen;
+    margin: 3em auto;
+    display: block;
+    float: none;
+    border: none;
+    width: 40%;
+    height: 50px;
+    outline: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.login-button:hover {
+    cursor: pointer;
+    background-color: #800000;
+    color: white;
+}
